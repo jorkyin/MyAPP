@@ -18,6 +18,9 @@
         <activity android:name=".MainActivity">
 
         </activity>
+        <activity android:name=".ListViewDemo">
+
+        </activity>
         <activity android:name=".OneActivity">
 
         </activity>
