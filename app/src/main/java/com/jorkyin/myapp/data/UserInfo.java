@@ -1,4 +1,4 @@
-package com.jorkyin.myapp;
+package com.jorkyin.myapp.data;
 
 /**
  * Created by YinJian on 2016/3/4.

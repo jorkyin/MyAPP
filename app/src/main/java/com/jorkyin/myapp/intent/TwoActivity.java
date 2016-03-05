@@ -1,7 +1,9 @@
-package com.jorkyin.myapp;
+package com.jorkyin.myapp.intent;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.jorkyin.myapp.R;
 
 /**
  * Created by YinJian on 2016/3/1.

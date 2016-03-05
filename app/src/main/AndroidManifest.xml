@@ -18,13 +18,16 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".ListViewDemo">
+        <activity android:name=".listViewDemo.ListViewDemo">
 
         </activity>
-        <activity android:name=".OneActivity">
+        <activity android:name=".layoutDemo.LayoutDemoActivity">
 
         </activity>
-        <activity android:name=".TwoActivity">
+        <activity android:name=".intent.OneActivity">
+
+        </activity>
+        <activity android:name=".intent.TwoActivity">
 
         </activity>
     </application>

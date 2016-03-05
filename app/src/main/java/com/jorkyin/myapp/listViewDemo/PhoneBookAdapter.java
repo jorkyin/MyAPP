@@ -1,4 +1,4 @@
-package com.jorkyin.myapp;
+package com.jorkyin.myapp.listViewDemo;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.jorkyin.myapp.R;
+import com.jorkyin.myapp.data.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
