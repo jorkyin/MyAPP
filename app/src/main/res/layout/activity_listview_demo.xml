@@ -7,7 +7,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/phone_book" />
+        android:text="@string/phone_book"
+        android:textSize="24sp"/>
 
     <ListView
         android:id="@+id/list_view"

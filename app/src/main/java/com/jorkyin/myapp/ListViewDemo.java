@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +14,9 @@ import java.util.List;
  */
 public class ListViewDemo extends Activity {
 
-    private ListView mPhoneBookListView ;
+    private ListView mPhoneBookListView;
     private List<UserInfo> mUserInfo = new ArrayList<>();
+    private PhoneBookAdapter mPhoneBookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +39,48 @@ public class ListViewDemo extends Activity {
         mUserInfo.add(new UserInfo("jorkyin", 130));
         mUserInfo.add(new UserInfo("jdyin", 104));
         mUserInfo.add(new UserInfo("jordin", 130));
+        mUserInfo.add(new UserInfo("jordin", 170));
+        mUserInfo.add(new UserInfo("jordin", 160));
+        mUserInfo.add(new UserInfo("jdyin", 130));
+        mUserInfo.add(new UserInfo("jorkyin", 120));
+        mUserInfo.add(new UserInfo("jorkyin", 130));
+        mUserInfo.add(new UserInfo("jdyin", 104));
+        mUserInfo.add(new UserInfo("jordin", 130));
+        mUserInfo.add(new UserInfo("jordin", 170));
+        mUserInfo.add(new UserInfo("jordin", 160));
+        mUserInfo.add(new UserInfo("jdyin", 130));
+        mUserInfo.add(new UserInfo("jorkyin", 120));
+        mUserInfo.add(new UserInfo("jorkyin", 130));
+        mUserInfo.add(new UserInfo("jdyin", 104));
+        mUserInfo.add(new UserInfo("jordin", 130));
+        mUserInfo.add(new UserInfo("jordin", 170));
+        mUserInfo.add(new UserInfo("jordin", 160));
+        mUserInfo.add(new UserInfo("jdyin", 130));
+        mUserInfo.add(new UserInfo("jorkyin", 120));
+        mUserInfo.add(new UserInfo("jorkyin", 130));
+        mUserInfo.add(new UserInfo("jdyin", 104));
+        mUserInfo.add(new UserInfo("jordin", 130));
 
 
-        PhoneBookAdapter phoneBookAdapter = new PhoneBookAdapter(ListViewDemo.this, mUserInfo);
+        mPhoneBookAdapter = new PhoneBookAdapter(ListViewDemo.this, mUserInfo);
+
         //设置Adapter参数
-        mPhoneBookListView.setAdapter(phoneBookAdapter);
+        mPhoneBookListView.setAdapter(mPhoneBookAdapter);
 
         //Item点击事件监听
         mPhoneBookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListViewDemo.this, "position:" + position + " id:" + id, Toast.LENGTH_LONG).show();
+
+                if (mUserInfo.get(position) != null) {
+                    //修改数据
+                    mUserInfo.get(position).setName("ddfsfsf");
+                    mUserInfo.get(position).setAge(56);
+                    //更新页面
+                    mPhoneBookAdapter.refreshData(mUserInfo);
+                } else {
+                    Toast.makeText(ListViewDemo.this, "数据为空", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -57,7 +88,7 @@ public class ListViewDemo extends Activity {
         mPhoneBookListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListViewDemo.this,"长按 ",Toast.LENGTH_LONG).show();
+                Toast.makeText(ListViewDemo.this, "长按 ", Toast.LENGTH_LONG).show();
                 return false;
             }
         });

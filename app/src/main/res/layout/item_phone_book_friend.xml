@@ -10,7 +10,7 @@
         android:background="@color/colorAccent"
         android:gravity="center"
         android:text="J"
-        android:textSize="30dp" />
+        android:textSize="35dp" />
 
     <TextView
         android:id="@+id/item_phoneBook_tv_name"
