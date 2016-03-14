@@ -19,8 +19,6 @@ public class WelcomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         //去除title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-//去掉Activity上面的状态栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_welcome);
         mHandler.postDelayed(new Runnable() {
