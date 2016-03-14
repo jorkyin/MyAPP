@@ -16,14 +16,14 @@ import java.util.List;
 /**
  * Created by YinJian on 2016/3/2.
  */
-public class PhoneBookAdapter extends BaseAdapter {
+public class ListAdapter extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
     private List<UserInfo> mUserInfo = new ArrayList<>();
 
-    public PhoneBookAdapter(Context context, List<UserInfo> userInfos) {
+    public ListAdapter(Context context, List<UserInfo> userInfos) {
         mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mUserInfo = userInfos;

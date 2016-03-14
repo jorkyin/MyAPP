@@ -11,11 +11,15 @@
         android:id="@+id/main_bt_listviewDemo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ListView Demo"/>
-
+        android:text="List View Demo"/>
     <Button
-        android:id="@+id/main_bt_layoutDemo"
+        android:id="@+id/main_bt_gridviewDemo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Layout Demo"/>
+        android:text="Grid View Demo"/>
+    <Button
+        android:id="@+id/main_bt_scrolviewDemo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scrol View Demo"/>
 </LinearLayout>
