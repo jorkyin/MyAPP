@@ -12,22 +12,23 @@ import android.view.WindowManager;
  */
 public class WelcomeActivity extends Activity {
     private Handler mHandler = new Handler();
-    private Intent mIntent ;
+    private Intent mIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //去除title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 //去掉Activity上面的状态栏
-        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_welcome);
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mIntent =new Intent(WelcomeActivity.this,MainActivity.class);
+                mIntent = new Intent(WelcomeActivity.this, MainActivity.class);
                 startActivity(mIntent);
             }
-        },3000);
+        }, 3000);
     }
 }

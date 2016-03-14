@@ -3,9 +3,10 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<Button
-    android:id="@+id/layoutDemo_bt_linearLayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="LinearLayout Demo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相对布局"/>
+
 </LinearLayout>
