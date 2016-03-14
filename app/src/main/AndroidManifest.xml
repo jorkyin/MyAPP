@@ -21,10 +21,13 @@
         <activity android:name=".listViewDemo.ListViewDemo">
 
         </activity>
-        <activity android:name=".girdviewdemo.GridViewDemo">
+        <activity android:name=".layoutDemo.LayoutDemoActivity">
 
         </activity>
-        <activity android:name=".scrolDemo.ScrolViewDemo">
+        <activity android:name=".intent.OneActivity">
+
+        </activity>
+        <activity android:name=".intent.TwoActivity">
 
         </activity>
     </application>
