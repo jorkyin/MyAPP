@@ -4,44 +4,44 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-import com.jorkyin.myapp.layoutDemo.LayoutDemoActivity;
+import com.jorkyin.myapp.girdviewdemo.GridViewDemo;
 import com.jorkyin.myapp.listViewDemo.ListViewDemo;
+import com.jorkyin.myapp.scrolDemo.ScrolViewDemo;
+import com.jorkyin.myapp.servers.MusicActivity;
 
-public class MainActivity extends AppCompatActivity {
-
-    private Button mBt_listviewDemo;
-    private Button mBt_layoutDemo;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mBt_listviewDemo = (Button) findViewById(R.id.main_bt_listviewDemo);
-        mBt_layoutDemo = (Button) findViewById(R.id.main_bt_layoutDemo);
+        findViewById(R.id.main_bt_listviewDemo).setOnClickListener(this);
+        findViewById(R.id.main_bt_gridviewDemo).setOnClickListener(this);
+        findViewById(R.id.main_bt_scrolviewDemo).setOnClickListener(this);
+        findViewById(R.id.main_bt_muiscServerDemo).setOnClickListener(this);
 
-        mBt_listviewDemo.setOnClickListener(new ButtonListener());
-        mBt_layoutDemo.setOnClickListener(new ButtonListener());
     }
 
-    private class ButtonListener implements View.OnClickListener {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.main_bt_listviewDemo:
+                startActivity(new Intent(MainActivity.this, ListViewDemo.class));
+                break;
+            case R.id.main_bt_gridviewDemo:
+                startActivity(new Intent(MainActivity.this, GridViewDemo.class));
+                break;
+            case R.id.main_bt_scrolviewDemo:
+                startActivity(new Intent(MainActivity.this, ScrolViewDemo.class));
+                break;
+            case R.id.main_bt_muiscServerDemo:
+                startActivity(new Intent(MainActivity.this, MusicActivity.class));
+                break;
 
-        private Intent mIntent;
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.main_bt_listviewDemo:
-                    mIntent = new Intent(MainActivity.this,ListViewDemo.class);
-                    startActivity(mIntent);
-                    break;
-                case R.id.main_bt_layoutDemo:
-                    mIntent=new Intent(MainActivity.this, LayoutDemoActivity.class);
-                    startActivity(mIntent);
-                    break;
-            }
         }
+
     }
+
 }

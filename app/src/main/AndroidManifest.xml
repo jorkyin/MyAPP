@@ -15,21 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".listViewDemo.ListViewDemo">
-
-        </activity>
-        <activity android:name=".layoutDemo.LayoutDemoActivity">
-
-        </activity>
-        <activity android:name=".intent.OneActivity">
-
-        </activity>
-        <activity android:name=".intent.TwoActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".listViewDemo.ListViewDemo"></activity>
+        <activity android:name=".girdviewdemo.GridViewDemo"></activity>
+        <activity android:name=".scrolDemo.ScrolViewDemo"></activity>
+        <activity android:name=".servers.MusicActivity"></activity>
+        <service android:name=".servers.MusicService"></service>
     </application>
 
 </manifest>
