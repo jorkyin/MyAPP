@@ -9,6 +9,6 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:backgroundColor="@color/colorPrimaryDark"
-        app:textSize="200sp"
+        app:textSize="100sp"
         />
 </LinearLayout>
