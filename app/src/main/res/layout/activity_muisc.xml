@@ -5,16 +5,18 @@
     android:orientation="horizontal">
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/muisc_bt_Start"
+        android:text="Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Start" />
+        android:layout_weight="1"/>
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/muisc_bt_Stop"
+        android:text="Stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Stop" />
+        android:layout_weight="1"/>
 </LinearLayout>

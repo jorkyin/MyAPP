@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.jorkyin.myapp.girdviewdemo.GridViewDemo;
 import com.jorkyin.myapp.listViewDemo.ListViewDemo;
+import com.jorkyin.myapp.myview.TestRedButtonActivity;
 import com.jorkyin.myapp.scrolDemo.ScrolViewDemo;
 import com.jorkyin.myapp.servers.MusicActivity;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.main_bt_gridviewDemo).setOnClickListener(this);
         findViewById(R.id.main_bt_scrolviewDemo).setOnClickListener(this);
         findViewById(R.id.main_bt_muiscServerDemo).setOnClickListener(this);
+        findViewById(R.id.main_bt_redButton).setOnClickListener(this);
 
     }
 
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_bt_muiscServerDemo:
                 startActivity(new Intent(MainActivity.this, MusicActivity.class));
+                break;
+            case R.id.main_bt_redButton:
+                startActivity(new Intent(MainActivity.this, TestRedButtonActivity.class));
                 break;
 
         }

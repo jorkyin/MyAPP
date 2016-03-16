@@ -20,7 +20,10 @@
         <activity android:name=".girdviewdemo.GridViewDemo"></activity>
         <activity android:name=".scrolDemo.ScrolViewDemo"></activity>
         <activity android:name=".servers.MusicActivity"></activity>
+        <activity android:name=".myview.TestRedButtonActivity"></activity>
+
         <service android:name=".servers.MusicService"></service>
+
     </application>
 
 </manifest>
