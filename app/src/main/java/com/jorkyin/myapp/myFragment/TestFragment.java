@@ -27,7 +27,7 @@ public class TestFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView");
 
-        View view = inflater.inflate(R.layout.item_phone_book_friend,container);
+        View view = inflater.inflate(R.layout.item_phone_book_friend,container,false);
 
         return super.onCreateView(inflater, container, savedInstanceState);
 

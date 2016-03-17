@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<fragment
-    android:id="@+id/fragment_text"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
-    android:name="com.jorkyin.myapp.myFragment.TestFragment"/>
-</LinearLayout>
+    android:layout_height="match_parent">
+<!--
+    <fragment
+        android:id="@+id/fragment_text"
+        android:name="com.jorkyin.myapp.myFragment.TestFragment"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />-->
+
+    <RelativeLayout
+        android:id="@+id/fragment_rl_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></RelativeLayout>
+</RelativeLayout>
