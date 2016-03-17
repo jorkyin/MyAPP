@@ -32,4 +32,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/main_bt_redButton"
         android:text="Text Red BUTTON"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_bt_MyFragment"
+        android:text="Text Red BUTTON"/>
 </LinearLayout>

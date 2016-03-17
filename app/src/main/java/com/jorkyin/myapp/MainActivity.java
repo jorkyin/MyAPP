@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.jorkyin.myapp.girdviewdemo.GridViewDemo;
 import com.jorkyin.myapp.listViewDemo.ListViewDemo;
+import com.jorkyin.myapp.myFragment.TestFragmentActivity;
 import com.jorkyin.myapp.myview.TestRedButtonActivity;
 import com.jorkyin.myapp.scrolDemo.ScrolViewDemo;
 import com.jorkyin.myapp.servers.MusicActivity;
@@ -18,12 +19,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initActivity();
+
+    }
+
+    private void initActivity() {
         findViewById(R.id.main_bt_listviewDemo).setOnClickListener(this);
         findViewById(R.id.main_bt_gridviewDemo).setOnClickListener(this);
         findViewById(R.id.main_bt_scrolviewDemo).setOnClickListener(this);
         findViewById(R.id.main_bt_muiscServerDemo).setOnClickListener(this);
         findViewById(R.id.main_bt_redButton).setOnClickListener(this);
-
+        findViewById(R.id.main_bt_MyFragment).setOnClickListener(this);
     }
 
     @Override
@@ -43,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_bt_redButton:
                 startActivity(new Intent(MainActivity.this, TestRedButtonActivity.class));
+                break;
+            case R.id.main_bt_MyFragment:
+                startActivity(new Intent(MainActivity.this, TestFragmentActivity.class));
                 break;
 
         }

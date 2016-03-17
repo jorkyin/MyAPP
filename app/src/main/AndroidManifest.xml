@@ -21,6 +21,7 @@
         <activity android:name=".scrolDemo.ScrolViewDemo"></activity>
         <activity android:name=".servers.MusicActivity"></activity>
         <activity android:name=".myview.TestRedButtonActivity"></activity>
+        <activity android:name=".myFragment.TestFragmentActivity"></activity>
 
         <service android:name=".servers.MusicService"></service>
 
