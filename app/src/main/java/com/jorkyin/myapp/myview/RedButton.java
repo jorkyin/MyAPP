@@ -61,7 +61,7 @@ public class RedButton extends View implements View.OnClickListener {
 
         //
         mBackgrounColor = typedArray.getColor(R.styleable.RedButton_backgroundColor, Color.BLACK);
-        mTextSize = typedArray.getDimensionPixelSize(R.styleable.RedButton_textSize,18);
+        mTextSize = typedArray.getDimensionPixelSize(R.styleable.RedButton_textSize, 18);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class RedButton extends View implements View.OnClickListener {
 
         //设置画布为红色
         //mPaint.setColor(Color.RED);
-mPaint.setColor(mBackgrounColor);
+        mPaint.setColor(mBackgrounColor);
         //圆形按钮
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, getWidth() / 2, mPaint);
 
@@ -78,7 +78,7 @@ mPaint.setColor(mBackgrounColor);
         //白色的数字
         mPaint.setColor(Color.WHITE);
         //数字大小
-       // mPaint.setTextSize(200);
+        // mPaint.setTextSize(200);
         mPaint.setTextSize(mTextSize);
 
         //获得文字范围

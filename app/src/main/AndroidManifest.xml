@@ -15,15 +15,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".listViewDemo.ListViewDemo"></activity>
-        <activity android:name=".girdviewdemo.GridViewDemo"></activity>
-        <activity android:name=".scrolDemo.ScrolViewDemo"></activity>
-        <activity android:name=".servers.MusicActivity"></activity>
-        <activity android:name=".myview.TestRedButtonActivity"></activity>
-        <activity android:name=".myFragment.TestFragmentActivity"></activity>
-
-        <service android:name=".servers.MusicService"></service>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".listViewDemo.ListViewDemo" />
+        <activity android:name=".girdviewdemo.GridViewDemo" />
+        <activity android:name=".scrolDemo.ScrolViewDemo" />
+        <activity android:name=".servers.MusicActivity" />
+        <activity android:name=".myview.TestRedButtonActivity" />
+        <activity android:name=".myFragment.TestFragmentActivity" />
+        <activity android:name=".myHandler.TestHandlerActivity" />
+        <activity android:name=".broadcast.SendBrocastActivity" />
+        <service android:name=".servers.MusicService" />
 
     </application>
 

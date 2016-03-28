@@ -25,7 +25,6 @@ public class MusicActivity extends Activity implements View.OnClickListener {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
         }
     };
 
@@ -36,10 +35,9 @@ public class MusicActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.muisc_bt_Start).setOnClickListener(this);
         findViewById(R.id.muisc_bt_Stop).setOnClickListener(this);
 
-        if (mMusicService != null){
+        if (mMusicService != null) {
             int x = mMusicService.getx();
         }
-
     }
 
     @Override

@@ -29,7 +29,6 @@ private IBinder mIBinder = new LocalBinder();
         Log.i(TAG, "onStartCommand");
         mMediaPlayer.start();
         return super.onStartCommand(intent, flags, startId);
-
     }
 
     @Override

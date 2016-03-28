@@ -31,10 +31,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/main_bt_redButton"
-        android:text="Text Red BUTTON"/>
+        android:text="Test Red BUTTON"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/main_bt_MyFragment"
-        android:text="Text Fragment "/>
+        android:text="Test Fragment "/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_bt_MyHandler"
+        android:text="Test Handler "/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/BroadcastReceiver"
+        android:text="BroadcastReceiver "/>
 </LinearLayout>

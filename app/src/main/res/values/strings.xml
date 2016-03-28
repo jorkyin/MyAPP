@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">MyAPP</string>
-    <string name="phone_book">通信录</string>
+    <string name="phone_book">条数</string>
 </resources>

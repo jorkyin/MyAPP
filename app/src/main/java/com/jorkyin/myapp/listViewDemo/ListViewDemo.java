@@ -1,9 +1,12 @@
 package com.jorkyin.myapp.listViewDemo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,61 +19,63 @@ import java.util.List;
 /**
  * Created by YinJian on 2016/3/2.
  */
-public class ListViewDemo extends Activity {
+public class ListViewDemo extends Activity implements View.OnClickListener {
 
     private ListView mPhoneBookListView;
     private List<UserInfo> mUserInfo = new ArrayList<>();
     private ListAdapter mPhoneBookAdapter;
+    private int mDataCounts = 10;
+    private EditText mCountsEditText;
+    private Button mCountsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview_demo);
 
-        //初始化ListView控件
+        //初始化控件
+        initActivity();
+
+        setData();
+        setListeners();
+    }
+    private void initActivity() {
+        //初始化控件
         mPhoneBookListView = (ListView) findViewById(R.id.list_view);
+        mCountsEditText = (EditText) findViewById(R.id.data_counts_edit_text);
+        mCountsButton = (Button) findViewById(R.id.data_counts_button);
 
-        //添加数据
-        mUserInfo.add(new UserInfo("jorkdn", 170));
-        mUserInfo.add(new UserInfo("jodyin", 120));
-        mUserInfo.add(new UserInfo("jordin", 170));
-        mUserInfo.add(new UserInfo("jordin", 140));
-        mUserInfo.add(new UserInfo("jordin", 130));
-        mUserInfo.add(new UserInfo("jordin", 170));
-        mUserInfo.add(new UserInfo("jordin", 160));
-        mUserInfo.add(new UserInfo("jdyin", 130));
-        mUserInfo.add(new UserInfo("jorkyin", 120));
-        mUserInfo.add(new UserInfo("jorkyin", 130));
-        mUserInfo.add(new UserInfo("jdyin", 104));
-        mUserInfo.add(new UserInfo("jordin", 130));
-        mUserInfo.add(new UserInfo("jordin", 170));
-        mUserInfo.add(new UserInfo("jordin", 160));
-        mUserInfo.add(new UserInfo("jdyin", 130));
-        mUserInfo.add(new UserInfo("jorkyin", 120));
-        mUserInfo.add(new UserInfo("jorkyin", 130));
-        mUserInfo.add(new UserInfo("jdyin", 104));
-        mUserInfo.add(new UserInfo("jordin", 130));
-        mUserInfo.add(new UserInfo("jordin", 170));
-        mUserInfo.add(new UserInfo("jordin", 160));
-        mUserInfo.add(new UserInfo("jdyin", 130));
-        mUserInfo.add(new UserInfo("jorkyin", 120));
-        mUserInfo.add(new UserInfo("jorkyin", 130));
-        mUserInfo.add(new UserInfo("jdyin", 104));
-        mUserInfo.add(new UserInfo("jordin", 130));
-        mUserInfo.add(new UserInfo("jordin", 170));
-        mUserInfo.add(new UserInfo("jordin", 160));
-        mUserInfo.add(new UserInfo("jdyin", 130));
-        mUserInfo.add(new UserInfo("jorkyin", 120));
-        mUserInfo.add(new UserInfo("jorkyin", 130));
-        mUserInfo.add(new UserInfo("jdyin", 104));
-        mUserInfo.add(new UserInfo("jordin", 130));
+        mCountsButton.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.data_counts_button:
+                String CountsString = mCountsEditText.getText().toString();
+                mDataCounts = Integer.valueOf(CountsString);
+                for (int index = 0; index < mDataCounts; index++) {
+                    //添加数据
+                    mUserInfo.add(new UserInfo("jorkdn", 170));
+                }
+                //更新页面
+                mPhoneBookAdapter.refreshData(mUserInfo);
+                break;
+        }
+    }
+
+    private void setData() {
+        for (int index = 0; index < mDataCounts; index++) {
+            //添加数据
+            mUserInfo.add(new UserInfo("jorkdn", 170));
+        }
 
         mPhoneBookAdapter = new ListAdapter(ListViewDemo.this, mUserInfo);
-
         //设置Adapter参数
         mPhoneBookListView.setAdapter(mPhoneBookAdapter);
+    }
 
+    private void setListeners() {
         //Item点击事件监听
         mPhoneBookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
