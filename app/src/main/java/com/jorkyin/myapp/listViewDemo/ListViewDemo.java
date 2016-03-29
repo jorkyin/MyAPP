@@ -1,7 +1,9 @@
 package com.jorkyin.myapp.listViewDemo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +29,8 @@ public class ListViewDemo extends Activity implements View.OnClickListener {
     private int mDataCounts = 10;
     private EditText mCountsEditText;
     private Button mCountsButton;
+    //系统自动创建XML，名字：preferences   地址：/data/data/com.jorkyin.myapp.listViewDemo/preferences.xml
+    SharedPreferences mSharedPreferences = ListViewDemo.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +58,43 @@ public class ListViewDemo extends Activity implements View.OnClickListener {
             case R.id.data_counts_button:
                 String CountsString = mCountsEditText.getText().toString();
                 mDataCounts = Integer.valueOf(CountsString);
-                for (int index = 0; index < mDataCounts; index++) {
-                    //添加数据
-                    mUserInfo.add(new UserInfo("jorkdn", 170));
-                }
-                //更新页面
-                mPhoneBookAdapter.refreshData(mUserInfo);
+                refreshListView();
+
+                saveDataToPrefercence(mDataCounts);
                 break;
         }
     }
 
+    private void saveDataToPrefercence(int mDataCounts) {
+        SharedPreferences.Editor editor= mSharedPreferences.edit();
+        editor.putInt("list_view_Data_Counts", mDataCounts);
+        //后台写入，另开线程
+        editor.apply();
+        //删除
+        //editor.remove("list_view_Data_Counts");
+mSharedPreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+    //监听被修改的Key
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+       Toast.makeText(ListViewDemo.this, key+":"+mSharedPreferences.getInt(key,0),Toast.LENGTH_LONG).show();
+    }
+});
+
+    }
+
+    private void refreshListView() {
+        mUserInfo.clear();
+        for (int index = 0; index < mDataCounts; index++) {
+            //添加数据
+            mUserInfo.add(new UserInfo("jorkdn", 170));
+        }
+        //更新页面
+        mPhoneBookAdapter.refreshData(mUserInfo);
+    }
+
     private void setData() {
+        mDataCounts = mSharedPreferences.getInt("list_view_Data_Counts",10);
+        mCountsEditText.setText(String.valueOf(mDataCounts));
         for (int index = 0; index < mDataCounts; index++) {
             //添加数据
             mUserInfo.add(new UserInfo("jorkdn", 170));
