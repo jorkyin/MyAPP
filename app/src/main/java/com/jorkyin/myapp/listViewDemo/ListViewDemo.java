@@ -30,13 +30,13 @@ public class ListViewDemo extends Activity implements View.OnClickListener {
     private EditText mCountsEditText;
     private Button mCountsButton;
     //系统自动创建XML，名字：preferences   地址：/data/data/com.jorkyin.myapp.listViewDemo/preferences.xml
-    SharedPreferences mSharedPreferences = ListViewDemo.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+    SharedPreferences mSharedPreferences ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview_demo);
-
+        mSharedPreferences = ListViewDemo.this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
         //初始化控件
         initActivity();
 
