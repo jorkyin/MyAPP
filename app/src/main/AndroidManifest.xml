@@ -3,6 +3,7 @@
     package="com.jorkyin.myapp">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!--外部存储权限申请-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
