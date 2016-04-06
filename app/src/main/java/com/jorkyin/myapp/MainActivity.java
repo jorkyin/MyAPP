@@ -22,12 +22,21 @@ import com.jorkyin.myapp.myHandler.TestHandlerActivity;
 import com.jorkyin.myapp.myview.TestRedButtonActivity;
 import com.jorkyin.myapp.scrolDemo.ScrolViewDemo;
 import com.jorkyin.myapp.servers.MusicActivity;
+import com.jorkyin.myapp.xml.SAXParseHandler;
+
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,6 +51,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        // testResFile();
 
        // testSDCard();
+
+        try {
+            testSAXParse();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void testSAXParse() throws ParserConfigurationException, SAXException, IOException {
+        //创建工厂
+        SAXParserFactory saxParserFactory= SAXParserFactory.newInstance();
+        //创建解析器
+        SAXParser saxParser=saxParserFactory.newSAXParser();
+        //从解析器中读取Readr
+        XMLReader xmlReader = saxParser.getXMLReader();
+
+        SAXParseHandler saxParseHandler = new SAXParseHandler();
+        xmlReader.setContentHandler(saxParseHandler);
+
+        InputStream inputStream = getResources().openRawResource(R.raw.testm);
+        InputSource inputSource = new InputSource(inputStream);
+
+        xmlReader.parse(inputSource);
+
+        saxParseHandler.getXMLList();
+
+
+        //简单写法
+        XMLReader xmlReader1Test= SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+        xmlReader1Test.setContentHandler(new SAXParseHandler());
+        xmlReader1Test.parse(new InputSource(getResources().openRawResource(R.raw.testm)));
+
     }
 
     private void testSDCard() {

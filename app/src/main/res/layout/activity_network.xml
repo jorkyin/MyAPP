@@ -6,7 +6,7 @@
     android:id="@+id/network_Edittext"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="http://192.168.0.199:8080"/>
+    android:text="http://www.baidu.com"/>
     <Button
         android:id="@+id/network_Button"
         android:layout_width="match_parent"
