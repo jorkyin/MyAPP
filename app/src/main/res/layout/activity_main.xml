@@ -47,4 +47,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/BroadcastReceiver"
         android:text="BroadcastReceiver "/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NetWork"
+        android:text="NetWork "/>
 </LinearLayout>

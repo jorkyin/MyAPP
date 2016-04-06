@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.main_bt_MyFragment).setOnClickListener(this);
         findViewById(R.id.main_bt_MyHandler).setOnClickListener(this);
         findViewById(R.id.BroadcastReceiver).setOnClickListener(this);
+        findViewById(R.id.NetWork).setOnClickListener(this);
     }
 
     @Override
@@ -179,6 +180,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.BroadcastReceiver:
                 startActivity(new Intent(MainActivity.this, SendBrocastActivity.class));
+                break;
+            case R.id.NetWork:
+                startActivity(new Intent(MainActivity.this, NetWorkActivity.class));
                 break;
         }
     }
