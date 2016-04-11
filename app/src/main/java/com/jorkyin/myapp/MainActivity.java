@@ -23,6 +23,7 @@ import com.jorkyin.myapp.myview.TestRedButtonActivity;
 import com.jorkyin.myapp.scrolDemo.ScrolViewDemo;
 import com.jorkyin.myapp.servers.MusicActivity;
 import com.jorkyin.myapp.xml.SAXParseHandler;
+import com.jorkyin.myapp.xml.WebURL;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -33,6 +34,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -46,11 +48,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initActivity();
-       // testFileDemo();
+        // testFileDemo();
         //testAssets();
-       // testResFile();
+        // testResFile();
 
-       // testSDCard();
+        // testSDCard();
 
         try {
             testSAXParse();
@@ -65,27 +67,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void testSAXParse() throws ParserConfigurationException, SAXException, IOException {
         //创建工厂
-        SAXParserFactory saxParserFactory= SAXParserFactory.newInstance();
+        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         //创建解析器
-        SAXParser saxParser=saxParserFactory.newSAXParser();
+        SAXParser saxParser = saxParserFactory.newSAXParser();
         //从解析器中读取Readr
         XMLReader xmlReader = saxParser.getXMLReader();
 
         SAXParseHandler saxParseHandler = new SAXParseHandler();
         xmlReader.setContentHandler(saxParseHandler);
 
-        InputStream inputStream = getResources().openRawResource(R.raw.testm);
+        InputStream inputStream = getResources().openRawResource(R.raw.test);
         InputSource inputSource = new InputSource(inputStream);
 
         xmlReader.parse(inputSource);
-
-        saxParseHandler.getXMLList();
-
+        List<WebURL> webURLs = saxParseHandler.getXMLList();
+        if (webURLs.size() == 0) {
+            System.out.println("没有解析到数据");
+        }
+        for (int i = 0; i < webURLs.size(); i++) {
+            System.out.println(webURLs.get(i).getID() + "  " + webURLs.get(i).getUrl() + "  " + webURLs.get(i).getContent());
+        }
 
         //简单写法
-        XMLReader xmlReader1Test= SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+       /* XMLReader xmlReader1Test= SAXParserFactory.newInstance().newSAXParser().getXMLReader();
         xmlReader1Test.setContentHandler(new SAXParseHandler());
-        xmlReader1Test.parse(new InputSource(getResources().openRawResource(R.raw.testm)));
+        xmlReader1Test.parse(new InputSource(getResources().openRawResource(R.raw.test)));*/
+
 
     }
 
@@ -146,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void testFileDemo() {
