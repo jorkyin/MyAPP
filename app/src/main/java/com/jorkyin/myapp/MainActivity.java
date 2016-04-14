@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.jorkyin.myapp.broadcast.SendBrocastActivity;
 import com.jorkyin.myapp.girdviewdemo.GridViewDemo;
@@ -14,68 +16,53 @@ import com.jorkyin.myapp.myview.TestRedButtonActivity;
 import com.jorkyin.myapp.scrolDemo.ScrolViewDemo;
 import com.jorkyin.myapp.servers.MusicActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private ListButtonAdapter mListButtonAdapter;
+    private ListView mListview;
+    private List<MainActivityInfo> mButtonList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        initActivity();
-        RWFile rwFile=new RWFile(MainActivity.this);
+        mListview = (ListView) findViewById(R.id.listview);
+        /*RWFile rwFile = new RWFile(MainActivity.this);
 
         rwFile.testFileDemo();
         rwFile.testAssets();
         rwFile.testResFile();
-        rwFile.testSDCard();
+        rwFile.testSDCard();*/
 
-        new XMLParse(MainActivity.this);
+        /*new XMLParse(MainActivity.this);*/
+        initData();
     }
 
+    private void initData() {
+        mButtonList = new ArrayList<>();
+        mButtonList.add(new MainActivityInfo("ListViewDemo", ListViewDemo.class));
+        mButtonList.add(new MainActivityInfo("GridViewDemo", GridViewDemo.class));
+        mButtonList.add(new MainActivityInfo("ScrolViewDemo", ScrolViewDemo.class));
+        mButtonList.add(new MainActivityInfo("MusicActivity", MusicActivity.class));
+        mButtonList.add(new MainActivityInfo("TestRedButtonActivity", TestRedButtonActivity.class));
+        mButtonList.add(new MainActivityInfo("TestFragmentActivity", TestFragmentActivity.class));
+        mButtonList.add(new MainActivityInfo("TestHandlerActivity", TestHandlerActivity.class));
+        mButtonList.add(new MainActivityInfo("SendBrocastActivity", SendBrocastActivity.class));
+        mButtonList.add(new MainActivityInfo("NetWorkActivity", NetWorkActivity.class));
 
-    private void initActivity() {
-        findViewById(R.id.main_bt_listviewDemo).setOnClickListener(this);
-        findViewById(R.id.main_bt_gridviewDemo).setOnClickListener(this);
-        findViewById(R.id.main_bt_scrolviewDemo).setOnClickListener(this);
-        findViewById(R.id.main_bt_muiscServerDemo).setOnClickListener(this);
-        findViewById(R.id.main_bt_redButton).setOnClickListener(this);
-        findViewById(R.id.main_bt_MyFragment).setOnClickListener(this);
-        findViewById(R.id.main_bt_MyHandler).setOnClickListener(this);
-        findViewById(R.id.BroadcastReceiver).setOnClickListener(this);
-        findViewById(R.id.NetWork).setOnClickListener(this);
+        mListButtonAdapter = new ListButtonAdapter(MainActivity.this, mButtonList);
+
+        mListview.setAdapter(mListButtonAdapter);
+
+        mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                startActivity(new Intent(MainActivity.this, mButtonList.get(position).getCls()));
+            }
+        });
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.main_bt_listviewDemo:
-                startActivity(new Intent(MainActivity.this, ListViewDemo.class));
-                break;
-            case R.id.main_bt_gridviewDemo:
-                startActivity(new Intent(MainActivity.this, GridViewDemo.class));
-                break;
-            case R.id.main_bt_scrolviewDemo:
-                startActivity(new Intent(MainActivity.this, ScrolViewDemo.class));
-                break;
-            case R.id.main_bt_muiscServerDemo:
-                startActivity(new Intent(MainActivity.this, MusicActivity.class));
-                break;
-            case R.id.main_bt_redButton:
-                startActivity(new Intent(MainActivity.this, TestRedButtonActivity.class));
-                break;
-            case R.id.main_bt_MyFragment:
-                startActivity(new Intent(MainActivity.this, TestFragmentActivity.class));
-                break;
-            case R.id.main_bt_MyHandler:
-                startActivity(new Intent(MainActivity.this, TestHandlerActivity.class));
-                break;
-            case R.id.BroadcastReceiver:
-                startActivity(new Intent(MainActivity.this, SendBrocastActivity.class));
-                break;
-            case R.id.NetWork:
-                startActivity(new Intent(MainActivity.this, NetWorkActivity.class));
-                break;
-        }
-    }
-
 }

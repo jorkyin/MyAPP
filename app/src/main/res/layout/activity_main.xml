@@ -6,50 +6,8 @@
               android:orientation="vertical"
                 tools:context=".MainActivity"
     android:background="@color/colorBackground">
-
-    <Button
-        android:id="@+id/main_bt_listviewDemo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="List View Demo"/>
-    <Button
-        android:id="@+id/main_bt_gridviewDemo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Grid View Demo"/>
-    <Button
-        android:id="@+id/main_bt_scrolviewDemo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Scrol View Demo"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_bt_muiscServerDemo"
-        android:text="Muisc Server Demo"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_bt_redButton"
-        android:text="Test Red BUTTON"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_bt_MyFragment"
-        android:text="Test Fragment "/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_bt_MyHandler"
-        android:text="Test Handler "/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/BroadcastReceiver"
-        android:text="BroadcastReceiver "/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/NetWork"
-        android:text="NetWork "/>
+<ListView
+    android:id="@+id/listview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 </LinearLayout>

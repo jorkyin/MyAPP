@@ -95,6 +95,7 @@ public class ListViewDemo extends Activity implements View.OnClickListener {
     private void setData() {
         mDataCounts = mSharedPreferences.getInt("list_view_Data_Counts", 10);
         mCountsEditText.setText(String.valueOf(mDataCounts));
+
         for (int index = 0; index < mDataCounts; index++) {
             //添加数据
             mUserInfo.add(new UserInfo("jorkdn", 170));
