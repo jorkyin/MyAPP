@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MyAPP</string>
     <string name="phone_book">条数</string>
+    <string name="donwload">下载</string>
 </resources>

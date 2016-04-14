@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-
     private ListView mListview;
     private List<MainActivityInfo> mButtonList= new ArrayList<>();
     private ListButtonAdapter mListButtonAdapter;
@@ -40,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         rwFile.testResFile();
         rwFile.testSDCard();
 */
-       new XMLParse(MainActivity.this);
-        initData();
+       //new XMLParse(MainActivity.this);
+       initData();
     }
 
     private void initData() {
@@ -54,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mButtonList.add(new MainActivityInfo("TestHandlerActivity", TestHandlerActivity.class));
         mButtonList.add(new MainActivityInfo("SendBrocastActivity", SendBrocastActivity.class));
         mButtonList.add(new MainActivityInfo("NetWorkActivity", NetWorkActivity.class));
+        mButtonList.add(new MainActivityInfo("ThreadActivity", ThreadActivity.class));
 
         mListButtonAdapter = new ListButtonAdapter(MainActivity.this, mButtonList);
 
