@@ -28,6 +28,7 @@ public class ListViewDemo extends Activity implements View.OnClickListener {
     private int mDataCounts = 10;
     private EditText mCountsEditText;
     private Button mCountsButton;
+
     //系统自动创建XML，名字：preferences   地址：/data/data/com.jorkyin.myapp.listViewDemo/preferences.xml
     SharedPreferences mSharedPreferences;
 
