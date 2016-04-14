@@ -21,28 +21,30 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListButtonAdapter mListButtonAdapter;
+
     private ListView mListview;
-    private List<MainActivityInfo> mButtonList;
+    private List<MainActivityInfo> mButtonList= new ArrayList<>();
+    private ListButtonAdapter mListButtonAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mListview = (ListView) findViewById(R.id.listview);
+
         /*RWFile rwFile = new RWFile(MainActivity.this);
 
         rwFile.testFileDemo();
         rwFile.testAssets();
         rwFile.testResFile();
-        rwFile.testSDCard();*/
-
-        /*new XMLParse(MainActivity.this);*/
+        rwFile.testSDCard();
+*/
+       new XMLParse(MainActivity.this);
         initData();
     }
 
     private void initData() {
-        mButtonList = new ArrayList<>();
         mButtonList.add(new MainActivityInfo("ListViewDemo", ListViewDemo.class));
         mButtonList.add(new MainActivityInfo("GridViewDemo", GridViewDemo.class));
         mButtonList.add(new MainActivityInfo("ScrolViewDemo", ScrolViewDemo.class));
@@ -55,13 +57,16 @@ public class MainActivity extends AppCompatActivity {
 
         mListButtonAdapter = new ListButtonAdapter(MainActivity.this, mButtonList);
 
+        //在listview中添加Adapter
         mListview.setAdapter(mListButtonAdapter);
 
+        //标签点击事件
         mListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                startActivity(new Intent(MainActivity.this, mButtonList.get(position).getCls()));
+                if (mButtonList != null) {
+                    startActivity(new Intent(MainActivity.this, mButtonList.get(position).getCls()));
+                }
             }
         });
     }

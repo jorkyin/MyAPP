@@ -16,18 +16,19 @@ import com.jorkyin.myapp.R;
 public class MusicService extends Service {
     private static final String TAG = MusicActivity.class.getSimpleName();
     private MediaPlayer mMediaPlayer;
-private IBinder mIBinder = new LocalBinder();
+    private IBinder mIBinder = new LocalBinder();
+
     @Override
     public void onCreate() {
         super.onCreate();
-        mMediaPlayer=MediaPlayer.create(this, R.raw.myc);
+        mMediaPlayer = MediaPlayer.create(this, R.raw.myc);
         Log.i(TAG, "onCreate");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "onStartCommand");
-        mMediaPlayer.start();
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -41,16 +42,14 @@ private IBinder mIBinder = new LocalBinder();
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        mMediaPlayer.start();
         return mIBinder;
     }
 
-    public class LocalBinder extends Binder{
-        MusicService getService(){
+    public class LocalBinder extends Binder {
+        MusicService getService() {
             return MusicService.this;
         }
     }
 
-    public int getx(){
-        return 12;
-    }
 }

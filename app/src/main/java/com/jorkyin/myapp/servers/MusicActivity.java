@@ -34,10 +34,6 @@ public class MusicActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_muisc);
         findViewById(R.id.muisc_bt_Start).setOnClickListener(this);
         findViewById(R.id.muisc_bt_Stop).setOnClickListener(this);
-
-        if (mMusicService != null) {
-            int x = mMusicService.getx();
-        }
     }
 
     @Override
