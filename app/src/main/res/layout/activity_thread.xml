@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-
-
-    <Button
+    <TextView
+        android:textSize="10sp"
+        android:id="@+id/donwload_file_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/donwload"
-        android:id="@+id/donwload_button"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_above="@+id/progressBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="文件名"/>
+
+    <TextView
+        android:textSize="10sp"
+        android:id="@+id/download_network_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBar"
+        android:layout_toLeftOf="@+id/donwload_button"
+        android:layout_toStartOf="@+id/donwload_button"
+        android:text="0MB/0MB          0%"/>
 
     <ProgressBar
+        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:max="100"
-        android:id="@+id/progressBar"/>
+        android:layout_alignBottom="@+id/donwload_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/donwload_button"
+        android:layout_toStartOf="@+id/donwload_button"
+        android:max="100"/>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/donwload_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/donwload"/>
+</RelativeLayout>
