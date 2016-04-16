@@ -3,44 +3,53 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/et_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/donwload_button"
+        android:singleLine="true"
+        android:text="http://newmarket.oo523.com:8080/180/apkpack/2016/04/08/rukfikwran/bbjjwal03_Market__V10.10.6_133.apk"/>
+
     <TextView
-        android:textSize="10sp"
         android:id="@+id/donwload_file_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/progressBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="文件名"/>
+        android:layout_below="@+id/donwload_button"
+        android:textSize="10sp"/>
 
     <TextView
-        android:textSize="10sp"
         android:id="@+id/download_network_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/progressBar"
-        android:layout_toLeftOf="@+id/donwload_button"
-        android:layout_toStartOf="@+id/donwload_button"
-        android:text="0MB/0MB          0%"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/donwload_button"
+        android:textSize="10sp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/donwload_button"
+        android:layout_alignEnd="@+id/donwload_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/donwload_button"
-        android:layout_toStartOf="@+id/donwload_button"
+        android:layout_alignRight="@+id/donwload_button"
+        android:layout_below="@+id/download_network_info"
         android:max="100"/>
 
     <Button
         android:id="@+id/donwload_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/et_url"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:text="@string/donwload"/>
 </RelativeLayout>

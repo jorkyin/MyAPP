@@ -11,8 +11,11 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.jorkyin.myapp.utils.SizeConverter;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,16 +30,35 @@ import java.net.URLConnection;
  * Created by YinJian on 2016/4/14.
  */
 public class ThreadActivity extends Activity implements View.OnClickListener {
-
+private boolean downloadTab= true;
     private Button mDownloadButton;
     private ProgressBar mProgressBar;
-    private static final String APK_URL = "http://download.sj.qq.com/upload/connAssitantDownload/upload/MobileAssistant_1.apk";
+
     private static final String TAG = ThreadActivity.class.getSimpleName();
 
     private TextView tvFileInfo;
     private TextView tvNetworkInfo;
 
     private Handler mHandler = new DownloadHandler(this);
+    private int mDownloadSize;
+    private int mContentLength;
+    private String mFileNamestr;
+    private int x = 100;
+    private int mLength;
+    private EditText mEt_url;
+    private String mAPK_url;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setDownloadTab(boolean downloadTab) {
+        this.downloadTab = downloadTab;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
 
     public TextView getTvFileInfo() {
         return tvFileInfo;
@@ -62,18 +84,20 @@ public class ThreadActivity extends Activity implements View.OnClickListener {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         tvFileInfo = (TextView) findViewById(R.id.donwload_file_info);
         tvNetworkInfo = (TextView) findViewById(R.id.download_network_info);
+        mEt_url = (EditText) findViewById(R.id.et_url);
         mDownloadButton.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.donwload_button:
+                mAPK_url = mEt_url.getText().toString();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        download(APK_URL);
-
+                        download(mAPK_url);
                     }
                 }).start();
                 break;
@@ -89,7 +113,7 @@ public class ThreadActivity extends Activity implements View.OnClickListener {
             InputStream inputStream = urlConnection.getInputStream();//下载url流文件
 
             //获得下载文件大小
-            int contentLength = urlConnection.getContentLength();
+            mContentLength = urlConnection.getContentLength();
 
             //设置读写SD卡权限
             int REQUEST_EXTERNAL_STORAGE = 1;
@@ -121,32 +145,47 @@ public class ThreadActivity extends Activity implements View.OnClickListener {
             }
 
             //在SD卡中 Jorkyin文件夹中创建文件
-            String fileNamestr = url.getPath().substring(url.getPath().lastIndexOf("/") + 1);
-            String fileName = downloadFoldersName + fileNamestr;
+            mFileNamestr = url.getPath().substring(url.getPath().lastIndexOf("/") + 1);
+            String fileName = downloadFoldersName + mFileNamestr;
             File apkFile = new File(fileName);
             if (apkFile.exists()) {
                 apkFile.delete();
             }
 
-            int downloadSize = 0;
-            int length = 0;
+            mDownloadSize = 0;
+            mLength = 0;
             byte[] bytes = new byte[1024];
             //写文件字节流
             OutputStream outputStream = new FileOutputStream(fileName);
-            while ((length = inputStream.read(bytes)) != -1) {
-                //向文件中写字节流
-                outputStream.write(bytes, 0, length);
-                //已下载大小
-                downloadSize += length;
+            downloadTab=true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (downloadTab){Message message = mHandler.obtainMessage();
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("downloadSize", mDownloadSize);
+                        bundle.putInt("contentLength", mContentLength);
+                        bundle.putString("fileNamestr", mFileNamestr);
+                        message.setData(bundle);
+                        message.what = 0;
+                        mHandler.sendMessage(message);
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-                Message message = mHandler.obtainMessage();
-                Bundle bundle = new Bundle();
-                bundle.putInt("downloadSize", downloadSize);
-                bundle.putInt("contentLength", contentLength);
-                bundle.putString("fileNamestr", fileNamestr);
-                message.setData(bundle);
-                message.what = 0;
-                mHandler.sendMessage(message);
+                }
+            }).start();
+
+            while ((mLength = inputStream.read(bytes)) != -1) {
+                //向文件中写字节流
+                outputStream.write(bytes, 0, mLength);
+                //已下载大小
+                mDownloadSize += mLength;
+
+
             }
 
             inputStream.close();
@@ -177,33 +216,24 @@ public class ThreadActivity extends Activity implements View.OnClickListener {
                 case 0:
                     int contentLength = msg.getData().getInt("contentLength");
                     int downloadSize = msg.getData().getInt("downloadSize");
+
                     String fileNamestr = msg.getData().getString("fileNamestr");
                     //计算当前进度百分比
                     int progress = downloadSize * 100 / contentLength;
                     if (progress == 100) {
-
                         Log.i(TAG, "download success");
+                        activity.setDownloadTab(false);
+                        activity.getTvNetworkInfo().setText("下载完成");
+
+                    }else{
+                        activity.getTvNetworkInfo().setText(SizeConverter.autoConverter((downloadSize - activity.getX())*10) + "/s     " + SizeConverter.autoConverter(downloadSize) + " / " + SizeConverter.autoConverter(contentLength) + "      " + progress + "%");
+
                     }
                     activity.getTvFileInfo().setText(fileNamestr);
-                    activity.getTvNetworkInfo().setText(byteToMB(downloadSize) + " / " + byteToMB(contentLength) + "      " + progress + "%");
+                    activity.setX(downloadSize);
                     activity.getProgressBar().setProgress(progress);
                     break;
             }
-        }
-
-        private String byteToMB(int contentLength) {
-
-            if (contentLength / (1024 * 1024 * 1024) > 0) {
-                return contentLength / (1024 * 1024 * 1024) + "." + (contentLength % (1024 * 1024 * 1024)) / (1024 * 1024 * 10) + "GB ";
-            }
-
-            if (contentLength % (1024 * 1024 * 1024) / (1024 * 1024) > 0) {
-                return contentLength % (1024 * 1024 * 1024) / (1024 * 1024) + "." + ((contentLength % (1024 * 1024 * 1024)) % (1024 * 1024)) / (1024 * 10) + "MB";
-            }
-            if (contentLength % (1024 * 1024) / 1024 > 0) {
-                return contentLength % (1024 * 1024) / 1024 + "KB";
-            }
-            return "0KB";
         }
     }
 }
